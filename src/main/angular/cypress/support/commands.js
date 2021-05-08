@@ -38,7 +38,7 @@ Cypress.Commands.add("login", (username, password) => {
       sendImmediately: true,
     },
   }).then(({ body }) => {
-    console.log(body);
+    cy.log(`User data: ${body}`);
   });
 });
 
