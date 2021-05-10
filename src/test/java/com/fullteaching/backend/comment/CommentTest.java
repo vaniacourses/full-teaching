@@ -91,4 +91,9 @@ public class commentTest {
         Mockito.when(user.getName()).thenReturn("User");
         Assertions.assertEquals("User", user.getName());
     }
+    @Test
+    public void testCommentNull() {
+        Comment comment = new Comment();
+        Assertions.assertFalse(comment.equals(null));
+    }
 }

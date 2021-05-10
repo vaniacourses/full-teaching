@@ -1,4 +1,5 @@
 package com.fullteaching.backend.coursedetails;
+
 import com.fullteaching.backend.course.Course;
 import com.fullteaching.backend.filegroup.FileGroup;
 import com.fullteaching.backend.forum.Forum;
@@ -25,6 +26,7 @@ public class courseDetailsTest {
         Mockito.when(course.getTitle()).thenReturn("title test");
         CourseDetails courseDetails = new CourseDetails(course);
         Assertions.assertEquals("title test", courseDetails.getCourse().getTitle());
+        Assertions.assertEquals(course, courseDetails.getCourse());
     }
 
 
@@ -69,5 +71,11 @@ public class courseDetailsTest {
         CourseDetails courseDetails = new CourseDetails();
         courseDetails.setCourse(course);
         Assertions.assertEquals("course test", courseDetails.getCourse().getTitle());
+    }
+    
+    @Test
+    public void testeCourseNull() {
+        CourseDetails courseDetails = new CourseDetails();
+        Assertions.assertFalse(courseDetails.equals(null));
     }
 } 

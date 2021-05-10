@@ -1,4 +1,5 @@
 package com.fullteaching.backend.course;
+
 import com.fullteaching.backend.coursedetails.CourseDetails;
 import com.fullteaching.backend.session.Session;
 import com.fullteaching.backend.user.User;
@@ -103,5 +104,25 @@ public class CourseTest {
         sessionList.add(session);
         course.setSessions(sessionList);
         Assertions.assertEquals(sessionList, course.getSessions());
+    }
+    
+    @Test
+    public void testCourseNull() {
+        Course course = new Course();
+        Assertions.assertFalse(course.equals(null));
+    }
+
+    @Test
+    public void testSameInstance() {
+        User teacher = Mockito.mock(User.class);
+        Course anotherCourse = new Course("Title test", " image test", teacher);
+        Assertions.assertTrue(anotherCourse.equals(anotherCourse));
+    }
+
+    @Test
+    public void testEqualsDifferentClasses() {
+        Course course = new Course();
+        User teacher = Mockito.mock(User.class);
+        Assertions.assertFalse(course.equals(teacher));
     }
 } 
