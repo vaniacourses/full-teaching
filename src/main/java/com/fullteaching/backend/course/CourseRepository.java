@@ -8,6 +8,6 @@ import com.fullteaching.backend.user.User;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
 	
-    public Collection<Course> findByAttenders(Collection<User> users);
+	public Collection<Course> findByAttendersIn(Collection<User> users);
 
 }

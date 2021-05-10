@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	public Collection<User> findByNameIn(Collection<String> names);
 	
-	public Collection<User> findByCourses(Collection<Course> courses);
+	public Collection<User> findByCoursesIn(Collection<Course> courses);
 
 }

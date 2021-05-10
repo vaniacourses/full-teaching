@@ -71,7 +71,7 @@ public class CourseController {
 		s.add(id_i);
 		Collection<User> users = userRepository.findAllById(s);
 		Collection<Course> courses = new HashSet<>();
-		courses = courseRepository.findByAttenders(users);
+		courses = courseRepository.findByAttendersIn(users);
 		return new ResponseEntity<>(courses, HttpStatus.OK);
 	}
 	
@@ -315,7 +315,7 @@ public class CourseController {
 		
 			Set<Course> setCourse = new HashSet<>();
 			setCourse.add(c);
-			Collection<User> courseAttenders = userRepository.findByCourses(setCourse);
+			Collection<User> courseAttenders = userRepository.findByCoursesIn(setCourse);
 			
 			for (User attender : courseAttenders){
 				if (!course.getAttenders().contains(attender)){
