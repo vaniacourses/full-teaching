@@ -69,9 +69,12 @@ public class CourseTest {
 
     @Test
     public void testTeacher() {
+    	Course course = new Course();
         User teacher = mock(User.class);
         Mockito.when(teacher.getName()).thenReturn("Teacher");
         Assertions.assertEquals("Teacher", teacher.getName());
+        course.setTeacher(teacher);
+        Assertions.assertEquals(teacher, course.getTeacher());
     }
 
 
@@ -124,5 +127,16 @@ public class CourseTest {
         Course course = new Course();
         User teacher = Mockito.mock(User.class);
         Assertions.assertFalse(course.equals(teacher));
+    }
+    
+    @Test
+    public void testEquals() {
+        Course course = new Course();
+        Course anotherCourse = new Course();
+        Course differentCourse = new Course();
+        course.setId(1);
+        anotherCourse.setId(1);
+        differentCourse.setId(2);
+        Assertions.assertTrue(course.equals(anotherCourse) && !course.equals(differentCourse));
     }
 } 

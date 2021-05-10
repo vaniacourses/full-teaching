@@ -87,13 +87,48 @@ public class commentTest {
 
     @Test
     public void testUser() {
+    	Comment comment = new Comment();
         User user = mock(User.class);
         Mockito.when(user.getName()).thenReturn("User");
         Assertions.assertEquals("User", user.getName());
+        comment.setUser(user);
+        Assertions.assertEquals(user, comment.getUser());
     }
+    
     @Test
     public void testCommentNull() {
         Comment comment = new Comment();
         Assertions.assertFalse(comment.equals(null));
+    }
+    
+    @Test
+    public void testToString() {
+        User user = mock(User.class);
+        String message = "test";
+        long date = 999;
+        Comment comment = new Comment(message, date, user);
+        User userParent = mock(User.class);
+        String messageParent = "test parent";
+        long dateParent = 6789;
+        Comment commentParent = new Comment(messageParent, dateParent, userParent, comment);
+        User user2 = mock(User.class);
+        String message2 = "test 2";
+        long date2 = 6789;
+        Comment comment2 = new Comment(message2, date2, user2);
+        List<Comment> listComment = new ArrayList<Comment>();
+        listComment.add(comment2);
+        comment.setReplies(listComment);
+        String string = "Comment[message: \"" +
+                commentParent.getMessage() +
+                "\", author: \"" +
+                mock(User.class) +
+                "\", parent: \"" +
+                comment.getCommentParent() +
+                ", #replies: " +
+                comment.getReplies() +
+                "date: \"" +
+                commentParent.getDate() +
+                "\"]";
+        Assertions.assertEquals(string, commentParent.toString());
     }
 }
